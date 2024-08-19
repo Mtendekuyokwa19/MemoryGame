@@ -1,3 +1,4 @@
+import { types } from "util";
 
 export class CardInfo {
   clicked=false;
@@ -17,3 +18,19 @@ export class CardInfo {
   }
 
 }
+
+
+
+  export async function getCharacters(){
+    let characters=[];
+
+    for (let i = 0; i < 10; i++) {
+      let character= await fetch('https://rickandmortyapi.com/api/character/'+i);
+      let parcifyCharacter=await character.json();
+
+      characters.push(new CardInfo(parcifyCharacter.name,parcifyCharacter.image))
+
+    }
+console.log(characters)
+    return characters
+  }

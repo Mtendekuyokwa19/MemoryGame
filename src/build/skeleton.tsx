@@ -1,4 +1,22 @@
+
+import { useEffect } from "react";
+import { getCharacters } from "./fetch";
+
+
+
+
+
+
+
 function Header() {
+
+  useEffect(() => {
+getCharacters()
+
+    return () => {
+
+    };
+  }, []);
 
 return(
 <nav>
