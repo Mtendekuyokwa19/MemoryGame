@@ -1,6 +1,6 @@
 
 import { useEffect } from "react";
-import { getCharacters } from "./fetch";
+import { CardInfo, getCharacters, shuffleArray } from "./fetch";
 
 
 
@@ -11,8 +11,13 @@ import { getCharacters } from "./fetch";
 function Header() {
 
   useEffect(() => {
-getCharacters()
+let allCharacters= getCharacters();
+// console.log(allCharacters)
+allCharacters.then((results)=>{
+    shuffleArray(results)
+})
 
+// allCharacters.then()
     return () => {
 
     };
