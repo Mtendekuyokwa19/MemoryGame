@@ -59,7 +59,7 @@ let people:Ipeople={
 
   return (
 <>
-<Lose state={lose}/>
+<Lose state={lose} close={()=>{setlose(false)}}/>
 <UIskeleton allCharacters={character.characters} shuffle={reshuffle} setClick={changeClick}/>
 
 </>
@@ -67,14 +67,34 @@ let people:Ipeople={
   );
 }
 
-export function Lose({state}:Lose) {
+export function Lose({state,close}:Lose) {
   return(
     <dialog open={state} className='z-10  bg-cyan-800 rounded-lg p-4'>
       <div>
        <div className='flex justify-between'>
         <h1 className='text-red-400 font-bold text-lg'>You Lose</h1>
 
-        <button className='text-slate-400 font-bold'>X</button>
+        <button className='text-slate-400 font-bold' onClick={close}>X</button>
+       </div>
+        <p className='text-slate-200'>
+          Sorry, it looks like your neuro network is't solidified
+        </p>
+
+        <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm'>Replay</button>
+      </div>
+    </dialog>
+  )
+
+}
+
+export function Win({state,close}:Lose) {
+  return(
+    <dialog open={state} className='z-10  bg-cyan-800 rounded-lg p-4'>
+      <div>
+       <div className='flex justify-between'>
+        <h1 className='text-red-400 font-bold text-lg'>You Lose</h1>
+
+        <button className='text-slate-400 font-bold' onClick={close}>X</button>
        </div>
         <p className='text-slate-200'>
           Sorry, it looks like your neuro network is't solidified
@@ -87,6 +107,7 @@ export function Lose({state}:Lose) {
 
 }
 interface Lose{
-  state:boolean
+  state:boolean,
+  close:any
 }
 export default App;
