@@ -3,10 +3,12 @@ import { types } from "util";
 export class CardInfo {
   clicked=false;
   name:String;
-  link:String;
-  constructor(name:String,link:String) {
+  link:string;
+  gender:String;
+  constructor(name:String,link:string,gender:String) {
     this.name=name;
     this.link=link;
+    this.gender=gender;
   }
 
   isclicked():boolean{
@@ -24,13 +26,13 @@ export class CardInfo {
   export async function getCharacters(){
     let characters:CardInfo[]=[];
 
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 8; i++) {
 
       let character=await fetch('https://rickandmortyapi.com/api/character/'+i);
 
       let parcifyCharacter= await character.json();
 
-       characters.push(new CardInfo(parcifyCharacter.name,parcifyCharacter.image))
+       characters.push(new CardInfo(parcifyCharacter.name,parcifyCharacter.image,parcifyCharacter.gender))
 
     }
 

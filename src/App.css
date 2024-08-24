@@ -1,4 +1,14 @@
 .playGround{
 
-  background-image: url("./build/");
+  background-image: url("./doodles.svg");
+
+}
+.cardMove{
+ transform: rotate(720deg);
+ transition: transform 300ms ease-in-out;
+
+}
+dialog::backdrop{
+
+  filter: blur(2px);
 }
