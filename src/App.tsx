@@ -8,12 +8,13 @@ import { getCharacters, shuffleArray } from './build/fetch';
 
 
 function App() {
-
+let people;
   useEffect(() => {
     let allCharacters= getCharacters();
+
     // console.log(allCharacters)
     allCharacters.then((results)=>{
-        shuffleArray(results)
+        people=shuffleArray(results)
     })
 
     // allCharacters.then()
@@ -23,7 +24,7 @@ function App() {
       }, []);
   return (
 <>
-<UIskeleton/>
+<UIskeleton allCharacters={people}/>
 
 </>
 
