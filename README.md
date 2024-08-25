@@ -10,7 +10,7 @@
 
 ## Preview
 
-Here is the live [link]()
+Here is the live [link](https://memory-game-zeta-ruby.vercel.app/)
 
 ## Features
 - rotate card randomization
