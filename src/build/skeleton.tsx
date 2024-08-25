@@ -47,7 +47,7 @@ export function UIskeleton({allCharacters,shuffle,setClick,addclick,click}:IallC
       </div>
     </div>
     <div className="flex p-7 justify-center h-screen playGround ">
-      <div className="grid grid-cols-2 grid-rows-4 md:grid-cols-3 md:grid-rows-3 md:gap-y-4 md:gap-x-20 md:h-auto sm:grid-cols-4 sm:grid-row-2 sm:gap-3 gap-8">
+      <div className="grid grid-cols-2 grid-rows-4 md:grid-cols-3 md:grid-rows-3 md:gap-y-28 md:gap-x-10 md:h-auto sm:grid-cols-4 sm:grid-row-2 sm:gap-3 gap-8">
          {allCharacters.map((character)=><Card Character={character} shuffle={shuffle} setClick={setClick} index={allCharacters.indexOf(character)} addclick={addclick} click={click}/>)}
       </div>
 
@@ -70,7 +70,7 @@ export default function Card({Character,shuffle,setClick,index,addclick}:ICard) 
 
 
   return (
-    <div className="dark:outline overflow-hidden outline-2 outline-card h-32 w-28  sm:w-48 sm:h-60 md:w-34 md:h-48 rounded-lg flex flex-col dark:bg-card card" onClick={()=>{
+    <div className="dark:outline md:p-2 overflow-hidden outline-2 outline-card h-32 w-28  sm:w-48 sm:h-60 md:w-34 md:h-48 rounded-lg flex flex-col dark:bg-card card" onClick={()=>{
 
       rotate()
       setClick(index)
@@ -82,10 +82,10 @@ export default function Card({Character,shuffle,setClick,index,addclick}:ICard) 
 
 
     }}>
-      <div className="flex h-full">
-        <img src={Character.link} alt="" className="rounded-lg w-full md:w-34 md:h-42 sm:w-48 z-0 sm:h-48  transition-all duration-300 hover:scale-90" />
+      <div className="flex h-full md:h-5/6">
+        <img src={Character.link} alt="" className="rounded-lg w-full md:w-full md:h-full sm:w-48 z-0 sm:h-48  transition-all duration-300 hover:scale-90" />
       </div>
-      <div className="flex justify-between px-1 sm:p-4 ">
+      <div className="flex justify-between px-1 sm:p-4 md:p-2 ">
         <p className="font-bold dark:text-slate-100 text-mobile md:text-base">{Character.name.split(" ")[0]}</p>
         <p className="text-slate-700 dark:text-slate-400 text-mobile md:text-base">{Character.gender}</p>
       </div>

@@ -5,6 +5,7 @@ import { UIskeleton } from './build/skeleton';
 import { CardInfo, getCharacters, shuffleArray } from './build/fetch';
 import { Interface } from 'readline';
 import { balloons } from "balloons-js";
+import { error } from 'console';
 
 
 
@@ -30,6 +31,8 @@ let people:Ipeople={
         // people.characters=shuffleArray(results)
         setcharacter({...character,characters:shuffleArray(results)})
 
+    }).catch((error)=>{
+        alert("failed to fetch")
     })
 
     // allCharacters.then()
@@ -37,7 +40,8 @@ let people:Ipeople={
 
         };
       }
-  useEffect(manageFetch, []);
+  useEffect(()=>{manageFetch();
+     openGuide()}, []);
 
 
       const [lose,setlose]=useState(false)
@@ -89,11 +93,16 @@ function nullfyclick() {
 setclick(0);
 }
 
+function openGuide() {
+  let guide=document.getElementById('guideDialog') as HTMLDialogElement
+guide.showModal();
+}
 
   return (
 <>
 <Win close={nullfyclick}/>
 <Lose  close={()=>{nullfyclick()}}/>
+  <Guide/>
 <UIskeleton allCharacters={character.characters} shuffle={reshuffle} setClick={changeClick} addclick={setclick} click={click}/>
 
 </>
@@ -125,7 +134,7 @@ export function Lose({close}:Lose) {
         }}>X</button>
        </div>
         <p className='text-slate-200'>
-          Sorry, it looks like your neuro network is't solidified
+          Sorry, it looks like your neuro network isn't solidified. You selected a character twice
         </p>
 
         <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm transition ease-in-out delay-150 hover:bg-cyan-500' onClick={manageModal}>Replay</button>
@@ -159,6 +168,37 @@ function manageClose() {
         </p>
 
         <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm transition ease-in-out delay-150  hover:bg-slate-600' onClick={manageClose} >Replay</button>
+      </div>
+    </dialog>
+  )
+
+}
+export function Guide() {
+
+function manageClose() {
+     let modal=document.getElementById('guideDialog') as HTMLDialogElement;
+
+          modal.close()
+
+}
+
+  return(
+    <dialog className='z-10  bg-cyan-800 rounded-lg p-4' id='guideDialog'>
+      <div className='flex flex-col gap-2'>
+       <div className='flex justify-between'>
+        <h1 className='text-green-500 font-bold text-2xl'>How to play!!!</h1>
+
+        <button className='text-slate-400 font-bold' onClick={()=>{
+       manageClose()
+        }}>X</button>
+       </div>
+        <p className='text-slate-200'>
+          To win. Do not click the same Card twice.
+          <br/>
+          <p className=' text-sm italic'>with joy, Morty</p>
+        </p>
+
+        <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm transition ease-in-out delay-150  hover:bg-slate-600' onClick={manageClose} >Let's play</button>
       </div>
     </dialog>
   )
