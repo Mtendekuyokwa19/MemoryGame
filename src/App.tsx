@@ -106,9 +106,9 @@ export function Lose({close}:Lose) {
 
   return(
     <dialog className='z-10  bg-cyan-800 rounded-lg p-4 ' id='loseDialog'>
-      <div>
+      <div className='flex flex-col gap-2'>
        <div className='flex justify-between'>
-        <h1 className='text-red-400 font-bold text-lg'>You Lose</h1>
+        <h1 className='text-red-400 font-bold text-2xl'>You Lose!!!</h1>
 
         <button className='text-slate-400 font-bold' onClick={()=>{
           let modal=document.getElementById('loseDialog') as HTMLDialogElement;
@@ -119,7 +119,7 @@ export function Lose({close}:Lose) {
           Sorry, it looks like your neuro network is't solidified
         </p>
 
-        <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm'>Replay</button>
+        <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm transition ease-in-out delay-150 hover:bg-cyan-500'>Replay</button>
       </div>
     </dialog>
   )
@@ -127,23 +127,29 @@ export function Lose({close}:Lose) {
 }
 
 export function Win({close}:Lose) {
-  return(
-    <dialog className='z-10  bg-cyan-800 rounded-lg p-4' id='winDialog'>
-      <div>
-       <div className='flex justify-between'>
-        <h1 className='text-red-400 font-bold text-lg'>You Win!!!</h1>
 
-        <button className='text-slate-400 font-bold' onClick={()=>{
-          let modal=document.getElementById('winDialog') as HTMLDialogElement;
+function manageClose() {
+     let modal=document.getElementById('winDialog') as HTMLDialogElement;
           close();
           modal.close()
+
+}
+
+  return(
+    <dialog className='z-10  bg-cyan-800 rounded-lg p-4' id='winDialog'>
+      <div className='flex flex-col gap-2'>
+       <div className='flex justify-between'>
+        <h1 className='text-green-500 font-bold text-2xl'>You Win!!!</h1>
+
+        <button className='text-slate-400 font-bold' onClick={()=>{
+       manageClose()
         }}>X</button>
        </div>
         <p className='text-slate-200'>
-          Sorry, it looks like your neuro network is't solidified
+          It seems your memory Is great. Ever thought of an IQ test.
         </p>
 
-        <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm'>Replay</button>
+        <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm transition ease-in-out delay-150  hover:bg-slate-600' onClick={manageClose} >Replay</button>
       </div>
     </dialog>
   )
