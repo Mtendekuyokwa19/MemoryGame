@@ -104,6 +104,16 @@ setclick(0);
 export function Lose({close}:Lose) {
 
 
+
+    function manageModal() {
+
+          let modal=document.getElementById('loseDialog') as HTMLDialogElement;
+          close()
+          modal.close()
+
+    }
+
+
   return(
     <dialog className='z-10  bg-cyan-800 rounded-lg p-4 ' id='loseDialog'>
       <div className='flex flex-col gap-2'>
@@ -111,15 +121,14 @@ export function Lose({close}:Lose) {
         <h1 className='text-red-400 font-bold text-2xl'>You Lose!!!</h1>
 
         <button className='text-slate-400 font-bold' onClick={()=>{
-          let modal=document.getElementById('loseDialog') as HTMLDialogElement;
-          close()
-          modal.close()}}>X</button>
+          manageModal()
+        }}>X</button>
        </div>
         <p className='text-slate-200'>
           Sorry, it looks like your neuro network is't solidified
         </p>
 
-        <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm transition ease-in-out delay-150 hover:bg-cyan-500'>Replay</button>
+        <button className='bg-green-500 text-slate-50 py-2 px-4 rounded-sm transition ease-in-out delay-150 hover:bg-cyan-500' onClick={manageModal}>Replay</button>
       </div>
     </dialog>
   )
