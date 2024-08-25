@@ -16,7 +16,7 @@ function Header() {
 
 
 return(
-<nav className="dark:bg-slate-900 dark:text-white lg:flex lg:justify-evenly p-4  sticky top-0 navbar ">
+<nav className="dark:bg-slate-900 dark:text-white bg-slate-300 text-slate-950 lg:flex lg:justify-evenly p-4  sticky top-0 navbar ">
 <button className="flex justify-center items-center gap-2">
 
   <h3 className="font-bold text-xl">NeuroGeeks</h3>
@@ -31,15 +31,21 @@ return(
 }
 
 
-export function UIskeleton({allCharacters,shuffle,setClick}:IallCharacters){
+export function UIskeleton({allCharacters,shuffle,setClick,addclick,click}:IallCharacters){
 
 
   return(
     <>
     <Header/>
+    <div>
+      <div className="p-2 flex justify-center bg-slate-700">
+
+        <p className="text-white">{click+" / " +allCharacters.length}</p>
+      </div>
+    </div>
     <div className="flex p-7 justify-center h-screen playGround ">
       <div className="grid grid-cols-4 grid-row-2 gap-3">
-         {allCharacters.map((character)=><Card Character={character} shuffle={shuffle} setClick={setClick} index={allCharacters.indexOf(character)}/>)}
+         {allCharacters.map((character)=><Card Character={character} shuffle={shuffle} setClick={setClick} index={allCharacters.indexOf(character)} addclick={addclick} click={click}/>)}
       </div>
 
     </div>
@@ -52,17 +58,24 @@ interface IallCharacters{
   allCharacters:CardInfo[];
   shuffle:any;
   setClick:any;
-
+  addclick:any;
+  click:number;
 }
 
 
-export default function Card({Character,shuffle,setClick,index}:ICard) {
+export default function Card({Character,shuffle,setClick,index,addclick}:ICard) {
 
 
   return (
-    <div className="dark:outline overflow-hidden outline-2 outline-card   w-48 h-62 rounded-lg flex flex-col dark:bg-card card" onClick={()=>{rotate()
+    <div className="dark:outline overflow-hidden outline-2 outline-card   w-48 h-62 rounded-lg flex flex-col dark:bg-card card" onClick={()=>{
+
+      rotate()
       setClick(index)
+      addclick((a:number)=>a+1)
+
+
       shuffle()
+
 
 
     }}>
@@ -82,6 +95,8 @@ interface ICard{
   shuffle:any,
   setClick:any;
   index:number;
+  addclick:any;
+  click:number;
 }
 
 function rotate() {

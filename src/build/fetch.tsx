@@ -26,7 +26,7 @@ export class CardInfo {
   export async function getCharacters(){
     let characters:CardInfo[]=[];
 
-    for (let i = 1; i <= 8; i++) {
+    for (let i = 1; i <= 3; i++) {
 
       let character=await fetch('https://rickandmortyapi.com/api/character/'+i);
 
