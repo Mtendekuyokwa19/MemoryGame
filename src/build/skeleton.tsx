@@ -48,7 +48,7 @@ export function UIskeleton({allCharacters,shuffle,setClick,addclick,click}:IallC
     </div>
     <div className="flex p-7 justify-center h-screen playGround ">
       <div className="grid grid-cols-2 grid-rows-4 md:grid-cols-3 md:grid-rows-3 md:gap-y-28 md:gap-x-10 md:h-auto sm:grid-cols-4 sm:grid-row-2 sm:gap-3 gap-8">
-         {allCharacters.map((character)=><Card Character={character} shuffle={shuffle} setClick={setClick} index={allCharacters.indexOf(character)} addclick={addclick} click={click}/>)}
+         {allCharacters.map((character)=><Card Character={character} key={character.key}  shuffle={shuffle} setClick={setClick} index={allCharacters.indexOf(character)} addclick={addclick} click={click}/>)}
       </div>
 
     </div>

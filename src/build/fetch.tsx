@@ -1,3 +1,4 @@
+import { randomUUID } from "crypto";
 import { types } from "util";
 
 export class CardInfo {
@@ -5,10 +6,13 @@ export class CardInfo {
   name:String;
   link:string;
   gender:String;
+  key:any;
   constructor(name:String,link:string,gender:String) {
     this.name=name;
     this.link=link;
     this.gender=gender;
+    this.key=randomUUID()
+
   }
 
   isclicked():boolean{
